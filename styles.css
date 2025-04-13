@@ -14,8 +14,6 @@
   padding: 0;
   box-sizing: border-box;
   font-family: 'Space Grotesk', sans-serif;
-  backface-visibility: hidden;
-  -webkit-font-smoothing: antialiased;
 }
 
 html {
@@ -23,9 +21,10 @@ html {
 }
 
 body {
-  background-color: transparent;
+  background-color: var(--bg);
   color: var(--text);
   line-height: 1.6;
+  position: relative;
 }
 
 .video-background {
@@ -36,25 +35,13 @@ body {
   height: 100%;
   z-index: -1;
   overflow: hidden;
-  background: var(--bg); /* Fallback background color */
 }
 
 .video-background video {
-  position: absolute;
-  min-width: 100%;
-  min-height: 100%;
-  width: auto;
-  height: auto;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
   object-fit: cover;
   opacity: 0.15;
-  filter: brightness(0.8) contrast(1.2); /* Enhance video visibility */
-  will-change: transform; /* Optimize performance */
-  transform-style: preserve-3d;
-  -webkit-transform-style: preserve-3d; /* Better performance on webkit browsers */
-  backface-visibility: hidden;
 }
 
 .navigation {
@@ -133,22 +120,15 @@ body {
   margin: 20px auto;
   padding: 40px;
   background: rgba(10, 12, 15, 0.4);
-  backdrop-filter: blur(8px);
   border-radius: 20px;
   box-shadow: 0 0 50px var(--glow-color);
-  animation: fadeIn 1s ease-out;
-  transform-style: preserve-3d;
-  perspective: 1000px;
+  opacity: 0;
+  animation: fadeIn 0.5s ease-out forwards;
 }
 
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
   to {
     opacity: 1;
-    transform: translateY(0);
   }
 }
 
@@ -167,20 +147,9 @@ h1 {
   font-size: 4rem;
   margin-bottom: 1rem;
   background: linear-gradient(to right, var(--text), var(--primary));
-  background-clip: text;
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
-  text-shadow: 0 0 20px var(--glow-color);
-  animation: glow 2s ease-in-out infinite alternate;
-}
-
-@keyframes glow {
-  from {
-    text-shadow: 0 0 20px var(--glow-color);
-  }
-  to {
-    text-shadow: 0 0 30px var(--glow-color), 0 0 40px var(--glow-color);
-  }
 }
 
 .subtitle {
@@ -193,19 +162,9 @@ h2 {
   font-size: 2.5rem;
   margin-bottom: 1.5rem;
   background: linear-gradient(to right, var(--text), var(--primary));
-  background-clip: text;
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
-  opacity: 0;
-  transform: translateY(20px);
-  animation: fadeInUp 0.5s ease forwards;
-}
-
-@keyframes fadeInUp {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
 }
 
 .social-links {
@@ -250,22 +209,11 @@ social-links a:hover {
   border-radius: 15px;
   border: 1px solid rgba(100, 255, 218, 0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  transform: translateZ(0);
-  backface-visibility: hidden;
-  will-change: opacity, transform;
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.4s ease-out, transform 0.4s ease-out;
 }
 
 .section:hover {
-  transform: translateY(-5px) translateZ(20px);
+  transform: translateY(-5px);
   box-shadow: var(--card-shadow);
-}
-
-.section.fade-in {
-  opacity: 1;
-  transform: translateZ(0) translateY(0);
 }
 
 .skills {
@@ -307,10 +255,6 @@ social-links a:hover {
   border-radius: 10px;
   border: 1px solid rgba(100, 255, 218, 0.1);
   transition: all 0.3s ease;
-  transform: translateZ(0);
-  backface-visibility: hidden;
-  will-change: transform;
-  contain: content;
 }
 
 .card-title {
@@ -355,8 +299,6 @@ footer {
 @media (prefers-reduced-motion: reduce) {
   .section {
     transition: none;
-    opacity: 1;
-    transform: none;
   }
 }
 
