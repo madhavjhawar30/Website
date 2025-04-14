@@ -211,6 +211,10 @@ social-links a:hover {
   box-shadow: var(--card-shadow);
 }
 
+p + p {
+  margin-top: 1.5rem;
+}
+
 .skills {
   display: flex;
   flex-wrap: wrap;
@@ -306,6 +310,11 @@ social-links a:hover {
 .project-card:hover::before,
 .experience-card:hover::before {
   left: 100%;
+}
+
+.project-card p + p,
+.experience-card p + p {
+  margin-top: 2rem;
 }
 
 .card-title {
