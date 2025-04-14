@@ -217,9 +217,21 @@ p + p {
 
 .skills {
   display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+  margin-top: 2rem;
+}
+
+.skills-category h3 {
+  color: var(--primary);
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+.skills-group {
+  display: flex;
   flex-wrap: wrap;
   gap: 1rem;
-  margin-top: 2rem;
 }
 
 .skill {
@@ -344,6 +356,13 @@ p + p {
 
 .project-links a:hover {
   color: var(--primary);
+}
+
+.profile-emoji {
+  display: block;
+  margin: 1.5rem 0;
+  max-width: 200px;
+  height: auto;
 }
 
 footer {
